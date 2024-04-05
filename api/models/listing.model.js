@@ -19,3 +19,7 @@ const listingSchema = new mongoose.Schema({
         default:false
     }
 })
+
+const List = mongoose.model('List',listingSchema);
+
+export default List;
