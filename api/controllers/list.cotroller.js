@@ -1,5 +1,5 @@
-import List from "../models/listing.model"
-import { errorHandler } from "../utils/error";
+import List from "../models/listing.model.js"
+import { errorHandler } from "../utils/error.js";
 
 export const createListing = async(req,res,next)=>{
     try {
@@ -14,7 +14,7 @@ export const createListing = async(req,res,next)=>{
 
 export const getListing = async(req,res,next)=>{
     try {
-        const listing = await List.findById(req.params.id)
+        const listing = await List.find()
         if(!listing){
             return next(errorHandler(404,'Listing is not found'));
         }
