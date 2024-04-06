@@ -82,7 +82,7 @@ function Login() {
         <p className="flex items-center mt-5 text-center">
           Already Have an Account?{" "}
           <Button
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/register")}
             className="ml-5"
             color="secondary"
           >
