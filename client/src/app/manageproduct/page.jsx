@@ -1,9 +1,10 @@
 import React from 'react'
-import DashboardHome from './DashboardHome'
+import ManageProduct from './ManageProduct'
+
 function page() {
   return (
     <div>
-    <DashboardHome/>
+        <ManageProduct/>
     </div>
   )
 }

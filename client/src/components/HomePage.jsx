@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from './Navbar'
+import HomeNavbar from './HomeNavbar'
 import Banner from './Banner'
 import Product from './Product'
 import Footer from './Footer'
@@ -7,7 +7,7 @@ import Footer from './Footer'
 function Home() {
   return (
     <div>
-    <Navbar/>
+    <HomeNavbar/>
     <Banner/>
     <Product/>
     <Footer/>

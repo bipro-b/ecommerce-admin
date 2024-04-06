@@ -1,9 +1,10 @@
 import React from 'react'
-import DashboardHome from './DashboardHome'
+import AddProduct from './AddProduct'
+
 function page() {
   return (
     <div>
-    <DashboardHome/>
+    <AddProduct/>
     </div>
   )
 }
