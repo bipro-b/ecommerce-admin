@@ -6,6 +6,8 @@ import cookieParser from "cookie-parser";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import listingRouter from "./routes/list.router.js"
+import cors from "cors"; // Import cors package
+
 // import path from 'path';
 dotenv.config();
 
@@ -22,9 +24,12 @@ mongoose
 
 const app = express();
 
+app.use(cors());
+
 app.use(express.json());
 
 app.use(cookieParser());
+
 
 
 const port = process.env.PORT || 5500

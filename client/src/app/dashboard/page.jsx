@@ -1,10 +1,10 @@
-'use client'
 import React from 'react'
+import Admin from './admin'
 
 function page() {
   return (
     <div>
-    <Register/>
+    <Admin/>
     </div>
   )
 }

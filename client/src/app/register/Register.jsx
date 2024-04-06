@@ -1,107 +1,86 @@
 'use client'
 import { useRouter } from "next/navigation";
-// import React, { useEffect, useReducer } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-import WestIcon from "@mui/icons-material/West";
-// import * as yup from "yup";
-import { useFormik } from "formik";
-// import { getUser, registerUser } from "@/Redux/Auth/Action";
+import { useState } from "react"; // Import useState hook
 import { Button, TextField } from "@mui/material";
 
-
 function Register() {
-  //   const dispatch = useDispatch();
-  const router = useRouter();
 
+  const [formData,setFormData] = useState({});
+  const [error,setError] = useState(null);
+  const [loading,setLoading] = useState(false);// State to handle errors
+
+  const router = useRouter();
   const goBack = () => {
     router.back();
   };
+  const handleChange = (e)=>{
+    setFormData({
+      ...formData,
+      [e.target.id]:e.target.value,
+    })
+  }
 
-  //const jwt = localStorage.getItem("access_token");
-  //const {auth} = useSelector((store)=>store);
+  const handleSubmit = async(e)=>{
+    try {
+     e.preventDefault();
+     setLoading(true);
+     const res = await fetch('http://localhost:5000/api/auth/signup',{
+       method:'POST',
+       headers:{
+         'Content-Type':'application/json'
+       },
+       body:JSON.stringify(formData)
+     })
+     const data = await res.json();
+     console.log("data:"+data);
+     if(data.success === false){
+       setLoading(false)
+       setError(data.message);
+       return
+     }
+     setLoading(false)
+     setError(null)
+     router.push("/login")
+    //  navigate('/sign-in')
+    } catch (error) {
+     setLoading(false)
+     setError(error.message)
+    }
+   }
+ 
+ 
 
-  const formik = useFormik({
-    initialValues: {
-      userName: "",
-      userEmail: "",
-      userPassword: "",
-      userRole: "",
-      userMobile: "+880 ",
-    },
-    onSubmit: (values) => {
-      console.log("values", values);
-      dispatch(registerUser(values));
-    },
-  });
-
-  //   useEffect(() => {
-  //     console.log("jwt: ", jwt);
-  //     if (jwt) {
-  //       dispatch(getUser(jwt));
-  //     }
-  //   }, [jwt]);
-
-  // useEffect(()=>{
-  //   if(auth.user?.userName){
-  //     router.push("/book-ride")
-  //     console.log("user name:",auth.user?.userName);
-  //   }
-  // },[auth.user])
 
   return (
-    <div className="py-10">
-      <div className="flex items-center px-2 lg:px-5 py-2">
-        <WestIcon onClick={goBack} className="cursor-pointer" />
-        <div>
-          <h2>Register Now</h2>
-        </div>
-      </div>
-
-      <form onSubmit={formik.handleSubmit} className="z-50 h-full p-5">
-        <TextField
-          label="Full Name"
+    <div className="p-3 max-w-lg mx-auto">
+      <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <input
           type="text"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          name="username"
-          value={formik.values.username}
-          onChange={formik.handleChange}
-        
-        ></TextField>
-
-        <TextField
-          label="Mobile Number"
+          placeholder="username"
+          className="border p-3 rounded-lg"
+          id="username"
+          onChange={handleChange}
+        />
+        <input
           type="text"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          name="userMobile"
-          value={formik.values.userMobile}
-          onChange={formik.handleChange}
-        ></TextField>
-
-        <TextField
-          label="Password"
+          placeholder="Mobile Number"
+          className="border p-3 rounded-lg"
+          id="usernumber"
+          onChange={handleChange}
+        />
+        <input
           type="password"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          name="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-         
-        ></TextField>
-
-        <Button
-          sx={{ padding: ".9rem 0rem" }}
-          variant="contained"
-          className="z-10 w-full"
-          type="submit"
-          color="secondary"
-        >
-          Register
-        </Button>
+          placeholder="password"
+          className="border p-3 rounded-lg"
+          id="password"
+          onChange={handleChange}
+        />
+        <button disabled={loading} className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 ">
+        {
+          loading ? 'Loading...': 'Sign Up'
+        }
+        </button>
       </form>
       <div className="flex w-full justify-center">
         <p className="flex items-center mt-5 text-center">
@@ -115,6 +94,7 @@ function Register() {
           </Button>
         </p>
       </div>
+      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 }
