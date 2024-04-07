@@ -45,10 +45,10 @@ app.use("/api/listing", listingRouter);
 app.use("/api/order", orderRouter);
 
 
-app.use(express.static(path.join(__dirname, '/client/src/app')));
+app.use(express.static(path.join(__dirname, '/client/.next/server/app')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'app','layout.js'));
+  res.sendFile(path.join(__dirname, 'client','layout.js'));
 })
 
 // middleware
