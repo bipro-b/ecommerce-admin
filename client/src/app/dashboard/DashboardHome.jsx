@@ -2,10 +2,11 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Admin from './Admin';
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
-  { name: 'Manage Order', href: '/order', current: false },
+  { name: 'Manage Order', href: '/manageorder', current: false },
   { name: 'Manage Product', href: '/manageproduct', current: false },
   { name: 'Add Product', href: '/addproduct', current: false },
 ]
@@ -121,6 +122,8 @@ export default function Example() {
               ))}
             </div>
           </Disclosure.Panel>
+
+          <Admin/>
         </>
       )}
     </Disclosure>

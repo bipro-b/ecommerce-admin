@@ -21,8 +21,8 @@ const Products = () => {
   }, []); // Provide an empty dependency array to run this effect only once on mount
 
   return (
-    <div>
-      <h1 className="headline">Choose your product</h1>
+    <div className="mb-100">
+      <h1 className="headline flex justify-center">Choose your product</h1>
 
       <div className="container flex justify-center ">
         {isLoading ? (

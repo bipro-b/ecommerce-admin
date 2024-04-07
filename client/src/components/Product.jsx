@@ -47,7 +47,7 @@ const product = (props) => {
               Order Now
             </Button>{" "} */}
           <Button
-            className="btn-bck"
+            className="btn-bck text-white"
             style={{ backgroundColor: "#120E43" }}
             onClick={handleOrderNowClick}
           >
