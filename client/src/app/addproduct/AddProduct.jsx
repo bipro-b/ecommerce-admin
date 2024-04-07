@@ -36,7 +36,7 @@ const handleSubmit = async(e)=>{
   try {
     e.preventDefault();
     setLoading(true);
-    const res = await fetch('http://localhost:5000/api/listing/create', {
+    const res = await fetch('https://ecommerce-admin-mqxz.onrender.com/api/listing/create', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json',

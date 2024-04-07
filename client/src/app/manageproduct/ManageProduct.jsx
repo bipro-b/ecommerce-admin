@@ -8,7 +8,7 @@ const ManageProduct = () => {
   const [editedCourses, setEditedCourses] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/listing")
+    fetch("https://ecommerce-admin-mqxz.onrender.com/api/listing")
       .then((res) => res.json())
       .then((data) => {
         setCourse(data);
@@ -21,7 +21,7 @@ const ManageProduct = () => {
 const handleDelete = (id) => {
   const proceed = window.confirm("Are you sure you want to delete?");
   if (proceed) {
-    const url = `http://localhost:5000/api/listing/${id}`;
+    const url = `https://ecommerce-admin-mqxz.onrender.com/api/listing/${id}`;
     fetch(url, {
       method: "DELETE",
     })
@@ -44,7 +44,7 @@ const handleDelete = (id) => {
 
   const handleUpdate = (id, index) => {
     const updatedCourse = editedCourses[index];
-    const url = `http://localhost:5000/api/listing/${id}`;
+    const url = `https://ecommerce-admin-mqxz.onrender.com/api/listing/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -57,7 +57,7 @@ const handleDelete = (id) => {
         console.log(data);
         if (data.updatedCount) {
           alert("Updated successfully");
-          fetch("http://localhost:5000/api/listing")
+          fetch("https://ecommerce-admin-mqxz.onrender.com/api/listing")
             .then((res) => res.json())
             .then((data) => {
               setCourse(data.result);

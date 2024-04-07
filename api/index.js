@@ -48,7 +48,7 @@ app.use("/api/order", orderRouter);
 app.use(express.static(path.join(__dirname, '/client/src/app')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'layout.js'));
+  res.sendFile(path.join(__dirname, 'client', 'app','layout.js'));
 })
 
 // middleware

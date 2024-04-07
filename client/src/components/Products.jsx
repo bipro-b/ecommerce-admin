@@ -11,7 +11,7 @@ const Products = () => {
   const [isLoading, setLoading] = useState(true); // Initially set loading to true
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/listing")
+    fetch("https://ecommerce-admin-mqxz.onrender.com/api/listing")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
