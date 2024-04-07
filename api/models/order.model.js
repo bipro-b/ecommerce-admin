@@ -19,7 +19,11 @@ const OrderSchema = new mongoose.Schema({
     },
     phone:{
         type:String
-    }   
+    },
+    pending:{
+        type:Boolean,
+        default:false
+    }
 })
 
 const Order = mongoose.model('Order',OrderSchema);

@@ -1,14 +1,14 @@
 'use client'
 import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import "./ManageProduct.css";
+import "./ManageOrder.css";
 
-const ManageProduct = () => {
+const ManageOrder = () => {
   const [course, setCourse] = useState([]);
   const [editedCourses, setEditedCourses] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/listing")
+    fetch("http://localhost:5000/api/order")
       .then((res) => res.json())
       .then((data) => {
         setCourse(data);
@@ -21,7 +21,7 @@ const ManageProduct = () => {
 const handleDelete = (id) => {
   const proceed = window.confirm("Are you sure you want to delete?");
   if (proceed) {
-    const url = `http://localhost:5000/api/listing/${id}`;
+    const url = `http://localhost:5000/api/order/${id}`;
     fetch(url, {
       method: "DELETE",
     })
@@ -44,7 +44,7 @@ const handleDelete = (id) => {
 
   const handleUpdate = (id, index) => {
     const updatedCourse = editedCourses[index];
-    const url = `http://localhost:5000/api/listing/${id}`;
+    const url = `http://localhost:5000/api/order/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -57,7 +57,7 @@ const handleDelete = (id) => {
         console.log(data);
         if (data.updatedCount) {
           alert("Updated successfully");
-          fetch("http://localhost:5000/api/listing")
+          fetch("http://localhost:5000/api/order")
             .then((res) => res.json())
             .then((data) => {
               setCourse(data.result);
@@ -100,9 +100,9 @@ const handleDelete = (id) => {
       </h3>
       <div className="title">
         <div>Product</div>
+        <div>Phone</div>
         <div>Price</div>
-        <div>Description</div>
-        <div>Offer</div>
+        <div>Status</div>
         <div>Actions</div>
       </div>
       {course.map((assign, index) => (
@@ -110,28 +110,28 @@ const handleDelete = (id) => {
           <div>
             <TextField
               name="name"
-              value={editedCourses[index].name || assign.name}
+              value={editedCourses[index].productname || assign.productname}
               onChange={(e) => handleInputChange(e, index)}
             />
           </div>
           <div>
             <TextField
               name="price"
-              value={editedCourses[index].price || assign.price}
+              value={editedCourses[index].phone || assign.phone}
               onChange={(e) => handleInputChange(e, index)}
             />
           </div>
           <div>
             <TextField
               name="description"
-              value={editedCourses[index].description || assign.description}
+              value={assign.price}
               onChange={(e) => handleInputChange(e, index)}
             />
           </div>
           <div>
             <TextField
               name="offer"
-              value={editedCourses[index].offer || assign.offer}
+              value={editedCourses[index].pending || assign.pending}
               onChange={(e) => handleInputChange(e, index)}
             />
           </div>
@@ -156,4 +156,4 @@ const handleDelete = (id) => {
   );
 };
 
-export default ManageProduct;
+export default ManageOrder;

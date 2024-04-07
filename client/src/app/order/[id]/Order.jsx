@@ -10,14 +10,12 @@ import { useEffect, useState } from "react";
 const Order = ({ id }) => {
 
    const router = useRouter();
-  console.log(id);
 
   const { currentUser } = useSelector((state) => state.user);
   const [details, setDetails] = useState([]);
   const [bookDetails, setBookDetails] = useState({});
   const [error,setError] = useState(false);
 
-console.log("details:"+details)
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -31,21 +29,31 @@ console.log("details:"+details)
     setBookDetails(choosedBook || {});
   }, [details, id]);
 
-  console.log(bookDetails.name);
+  const { name, price, } = bookDetails;
+
+  const {username,usernumber} = currentUser;
+
+  const productName = name;
+  console.log(productName);
+  console.log(username)
   const [formData, setFormData] = useState({
-    username:'',
-    productname:'',
-    price:'',
-    phone:'',
+    username:username || ' ',
+    productname:productName || 'panjabi',
+    price: 80,
+    phone:usernumber ||' ',
     address: " ",
   });
 
+  console.log(formData);
   const handleChange = (e) => {
+    const { id, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.id]: e.target.value,
+      [id]: value,
     });
+    console.log("formdata"+formData); 
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,34 +102,31 @@ console.log("details:"+details)
             onChange={handleChange}
             value={currentUser.username}
           />
-          <textarea
+          <input
             type="text"
             className="border p-3 rounded-lg"
             id="productname"
-            required
             onChange={handleChange}
-            value={bookDetails.name}
+            value={formData.productname}
           />
           <input
             type="number"
             id="price"
             min="1"
             max="1000000"
-            required
             className="p-3 border-gray-300 rounded-lg"
             onChange={handleChange}
-            value={bookDetails.price}
+            value={formData.price}
           />
 
           <input
-            type="number"
+            type="text"
             id="phone"
             min="1"
             max="1000000"
-            required
             className="p-3 border-gray-300 rounded-lg"
             onChange={handleChange}
-            value={currentUser.usernumber}
+            value={formData.phone}
           />
 
           <input

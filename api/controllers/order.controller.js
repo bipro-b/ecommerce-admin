@@ -24,3 +24,14 @@ export const getOrder = async(req,res,next)=>{
     }
 }
 
+export const getOrderById= async(req,res,next)=>{
+    try {
+        const order = await Order.findById(req.params.id);
+        if(!order) return next(errorHandler(404,'User not found!'));
+  
+        const {password: pass, ...rest} = order._doc;
+        res.status(200).json(rest);
+      } catch (error) {
+        next(error);
+      }
+}
