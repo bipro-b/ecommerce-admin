@@ -24,3 +24,14 @@ export const getListing = async(req,res,next)=>{
     }
 }
 
+export const getListById= async(req,res,next)=>{
+    try {
+        const list = await List.findById(req.params.id);
+        if(!list) return next(errorHandler(404,'User not found!'));
+  
+        const {password: pass, ...rest} = list._doc;
+        res.status(200).json(rest);
+      } catch (error) {
+        next(error);
+      }
+}

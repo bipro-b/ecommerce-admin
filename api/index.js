@@ -6,6 +6,8 @@ import cookieParser from "cookie-parser";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import listingRouter from "./routes/list.router.js"
+import orderRouter from "./routes/order.route.js"
+
 import cors from "cors"; // Import cors package
 
 // import path from 'path';
@@ -40,6 +42,8 @@ app.listen(port, () => {
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
+app.use("/api/order", orderRouter);
+
 
 // app.use(express.static(path.join(__dirname, '/client/dist')));
 

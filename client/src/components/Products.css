@@ -1,0 +1,25 @@
+.headline{
+    padding: 10px;
+    /* background-color: goldenrod; */
+    background-color: #120E43;
+    color: white;
+    border-radius: 3px;
+    box-shadow: 10px 20px 10px ;
+    margin-bottom: 0px;
+}
+
+
+.search-container {
+  background-color: rgba(0, 0, 0, 0.832);
+  text-align: center;
+  line-height: 40px;
+  margin-top: 0px;
+
+}
+
+.search-container input {
+  width: 50%;
+  margin-top: 0px;
+
+}
+

@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import {useSelector}  from "react-redux";
+
+
 const CreateListing = () => {
 
 
@@ -84,9 +86,7 @@ const handleSubmit = async(e)=>{
             required
             onChange={handleChange}
             value={formData.description}
-          />
-        
-           
+          />    
               <input
                 type="number"
                 id="price"
