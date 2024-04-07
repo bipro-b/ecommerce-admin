@@ -10,7 +10,7 @@ import orderRouter from "./routes/order.route.js"
 
 import cors from "cors"; // Import cors package
 
-// import path from 'path';
+import path from 'path';
 dotenv.config();
 
 mongoose
@@ -22,7 +22,7 @@ mongoose
     console.log(err);
   });
 
-//   const __dirname = path.resolve();
+  const __dirname = path.resolve();
 
 const app = express();
 
@@ -45,11 +45,11 @@ app.use("/api/listing", listingRouter);
 app.use("/api/order", orderRouter);
 
 
-// app.use(express.static(path.join(__dirname, '/client/dist')));
+app.use(express.static(path.join(__dirname, '/client/src/app')));
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-// })
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'layout.js'));
+})
 
 // middleware
 
